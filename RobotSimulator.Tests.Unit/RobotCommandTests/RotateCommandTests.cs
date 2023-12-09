@@ -16,19 +16,26 @@ public class RotateCommandTests
         _sut = new Robot(board);
     }
 
-    [Fact]
-    public void GivenRobotIsPlaced_WhenGivenLeftCommand_RobotShouldRotateAntiClockwise()
+    [Theory]
+    [InlineData(FacingDirection.North, 1, FacingDirection.West)]
+    [InlineData(FacingDirection.North, 2, FacingDirection.South)]
+    [InlineData(FacingDirection.North, 3, FacingDirection.East)]
+    [InlineData(FacingDirection.North, 4, FacingDirection.North)]
+    public void GivenRobotIsPlaced_WhenGivenLeftCommand_RobotShouldRotateAntiClockwise(
+        FacingDirection initialFacingDirection, int numberOfRotations, FacingDirection expectedFacingDirection)
     {
         // Arrange
-        var placeCommand = new PlaceCommand(new Vector2(3, 2), FacingDirection.South);
-        var leftCommand = new RotateCommand(RotationDirection.Left);
         var commandQueue = new Queue<IRobotCommand>();
+        var placeCommand = new PlaceCommand(new Vector2(3, 2), initialFacingDirection);
         commandQueue.Enqueue(placeCommand);
-        commandQueue.Enqueue(leftCommand);
-        const FacingDirection expectedFacingDirection = FacingDirection.East;
-        
+        for (var i = 0; i < numberOfRotations; i++)
+        {
+            var leftCommand = new RotateCommand(RotationDirection.Left);
+            commandQueue.Enqueue(leftCommand);
+        }
+
         // Pre-Assert
-        _sut.FacingDirection.Should().NotBe(expectedFacingDirection);
+        _sut.FacingDirection.Should().Be(initialFacingDirection);
 
         // Act
         _sut.Execute(commandQueue);
@@ -37,19 +44,26 @@ public class RotateCommandTests
         _sut.FacingDirection.Should().Be(expectedFacingDirection);
     }
 
-    [Fact]
-    public void GivenRobotIsPlaced_WhenGivenRightCommand_RobotShouldRotateAntiClockwise()
+    [Theory]
+    [InlineData(FacingDirection.North, 1, FacingDirection.East)]
+    [InlineData(FacingDirection.North, 2, FacingDirection.South)]
+    [InlineData(FacingDirection.North, 3, FacingDirection.West)]
+    [InlineData(FacingDirection.North, 4, FacingDirection.North)]
+    public void GivenRobotIsPlaced_WhenGivenRightCommand_RobotShouldRotateAntiClockwise(
+        FacingDirection initialFacingDirection, int numberOfRotations, FacingDirection expectedFacingDirection)
     {
         // Arrange
-        var placeCommand = new PlaceCommand(new Vector2(3, 2), FacingDirection.South);
-        var rightCommand = new RotateCommand(RotationDirection.Right);
+        var placeCommand = new PlaceCommand(new Vector2(3, 2), initialFacingDirection);
         var commandQueue = new Queue<IRobotCommand>();
         commandQueue.Enqueue(placeCommand);
-        commandQueue.Enqueue(rightCommand);
-        const FacingDirection expectedFacingDirection = FacingDirection.West;
-        
+        for (var i = 0; i < numberOfRotations; i++)
+        {
+            var rightCommand = new RotateCommand(RotationDirection.Right);
+            commandQueue.Enqueue(rightCommand);
+        }
+
         // Pre-Assert
-        _sut.FacingDirection.Should().NotBe(expectedFacingDirection);
+        _sut.FacingDirection.Should().Be(initialFacingDirection);
 
         // Act
         _sut.Execute(commandQueue);
@@ -66,7 +80,7 @@ public class RotateCommandTests
         var commandQueue = new Queue<IRobotCommand>();
         commandQueue.Enqueue(leftCommand); // Rotate before valid place
         const FacingDirection expectedFacingDirection = FacingDirection.North;
-        
+
         // Pre-Assert
         _sut.FacingDirection.Should().Be(expectedFacingDirection);
 

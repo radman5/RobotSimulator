@@ -44,7 +44,8 @@ public class Robot
 
     private FacingDirection Rotate(RotationDirection rotationDirection)
     {
-        return FacingDirection = (FacingDirection)(((int)FacingDirection + (int)rotationDirection) % 4);
+        var newRotation = ((int)FacingDirection + (int)rotationDirection) % 4;
+        return FacingDirection = newRotation < 0 ? (FacingDirection)3 : (FacingDirection)newRotation;
     }
 }
 
