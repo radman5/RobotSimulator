@@ -1,6 +1,8 @@
 using System.Numerics;
 using FluentAssertions;
 using RobotSimulator.App;
+using RobotSimulator.App.Enums;
+using RobotSimulator.App.RobotCommands;
 
 namespace RobotSimulator.Tests.Unit.RobotCommandTests;
 
@@ -18,18 +20,18 @@ public class PlaceCommandTests
     public void WhenGivenValidPlace_RobotShouldBeAtPlaceLocationWithDirection()
     {
         // Arrange
-        var validPlaceCommand = new PlaceCommand(new Vector2(1, 1), Direction.South);
+        var validPlaceCommand = new PlaceCommand(new Vector2(1, 1), FacingDirection.South);
         
         // Pre-Assert
         _sut.Position.Should().NotBe(validPlaceCommand.Position);
-        _sut.Direction.Should().NotBe(validPlaceCommand.Direction);
+        _sut.FacingDirection.Should().NotBe(validPlaceCommand.FacingDirection);
         
         // Act
         _sut.Execute(new [] {validPlaceCommand});
         
         // Assert
         _sut.Position.Should().Be(validPlaceCommand.Position);
-        _sut.Direction.Should().Be(validPlaceCommand.Direction);
+        _sut.FacingDirection.Should().Be(validPlaceCommand.FacingDirection);
     }
 
     [Fact]
@@ -37,20 +39,20 @@ public class PlaceCommandTests
     {
         // Arrange
         var startingPosition = new Vector2(0, 0);
-        const Direction startingDirection = Direction.North;
-        var validPlaceCommand = new PlaceCommand(new Vector2(100, 1), Direction.South);
+        const FacingDirection startingDirection = FacingDirection.North;
+        var validPlaceCommand = new PlaceCommand(new Vector2(100, 1), FacingDirection.South);
         
         // Pre-Assert
         _sut.Position.Should().Be(startingPosition);
-        _sut.Direction.Should().Be(startingDirection);
+        _sut.FacingDirection.Should().Be(startingDirection);
         startingPosition.Should().NotBe(validPlaceCommand.Position);
-        startingDirection.Should().NotBe(validPlaceCommand.Direction);
+        startingDirection.Should().NotBe(validPlaceCommand.FacingDirection);
         
         // Act
         _sut.Execute(new [] {validPlaceCommand});
         
         // Assert
         _sut.Position.Should().Be(startingPosition);
-        _sut.Direction.Should().Be(startingDirection);
+        _sut.FacingDirection.Should().Be(startingDirection);
     }
 }

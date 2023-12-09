@@ -1,12 +1,15 @@
 using System.Numerics;
+using RobotSimulator.App.Enums;
+using RobotSimulator.App.RobotCommands;
 
 namespace RobotSimulator.App;
 
 public class Robot
 {
     public Vector2 Position { get; private set; }
-    public Direction Direction { get; private set; }
+    public FacingDirection FacingDirection { get; private set; }
     private readonly Board _board;
+    private bool _hasBeenPlaced = false;
 
     public Robot(Board board)
     {
@@ -23,12 +26,25 @@ public class Robot
                     if (_board.IsPositionValid(placeCommand.Position))
                     {
                         Position = placeCommand.Position;
-                        Direction = placeCommand.Direction;
+                        FacingDirection = placeCommand.FacingDirection;
+                        _hasBeenPlaced = true;
+                    }
+                    
+                    break;
+                case RotateCommand rotateCommand:
+                    if (_hasBeenPlaced)
+                    {
+                        FacingDirection = Rotate(rotateCommand.RotationDirection);
                     }
 
                     break;
             }
         }
+    }
+
+    private FacingDirection Rotate(RotationDirection rotationDirection)
+    {
+        return FacingDirection = (FacingDirection)(((int)FacingDirection + (int)rotationDirection) % 4);
     }
 }
 
