@@ -8,12 +8,13 @@ public class Robot(Board board)
 {
     public Vector2 Position { get; private set; }
     public FacingDirection FacingDirection { get; private set; }
-    private bool _hasBeenPlaced = false;
+    private bool _hasBeenPlaced;
 
     public void Execute(IEnumerable<IRobotCommand> commands)
     {
         foreach (var command in commands)
         {
+            Thread.Sleep(200);
             switch (command)
             {
                 case PlaceCommand placeCommand:
@@ -29,6 +30,10 @@ public class Robot(Board board)
                     if (_hasBeenPlaced)
                     {
                         FacingDirection = Rotate(rotateCommand.RotationDirection);
+                    }
+                    else
+                    {
+                        LogRobotNotPlaced(rotateCommand, $" Direction: {rotateCommand.RotationDirection}");
                     }
 
                     break;
@@ -50,19 +55,34 @@ public class Robot(Board board)
                             Position = newPosition;
                         }
                     }
+                    else
+                    {
+                        LogRobotNotPlaced(moveCommand);
+                    }
 
                     break;
                 case ReportCommand reportCommand:
                     if(_hasBeenPlaced)
                     {
-                        Console.WriteLine($"Robot Position:( {Position.X} , {Position.Y} )" +
+                        Console.WriteLine($"Robot Position: ( {Position.X} , {Position.Y} ). " +
                                           $"Robot Facing: {FacingDirection}");
+                    }
+                    else
+                    {
+                        LogRobotNotPlaced(reportCommand);
                     }
                     break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(command));
             }
         }
+    }
+
+    private static void LogRobotNotPlaced(IRobotCommand discardedCommand, string additionalInfo = "")
+    {
+        Console.WriteLine($"Robot has not been placed yet. " +
+                          $"Discarding command: {discardedCommand.GetType().Name}." +
+                          $"{additionalInfo}");
     }
 
     private FacingDirection Rotate(RotationDirection rotationDirection)
