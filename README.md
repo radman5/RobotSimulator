@@ -10,6 +10,17 @@
 3. Navigate to the cloned repo's root  directory `cd RobotSimulator-main`
 4. Ensure Docker is running
 5. Run command: `docker run --rm -it $(docker build -q -f RobotSimulator.ConsoleApp/Dockerfile .)`
+### How to adjust list of commands
+All commands run by the Console Application are stored in the `RobotSimulator/RobotSimulator.ConsoleApp/commands.txt` file.
+- Each command needs to be on a new line.
+- List of valid Commands
+	- PLACE x,y,facingDirection 
+		- (x = X coordinate, y = Y Coordinate, facingDirection can be NORTH, EAST, SOUTH or WEST)
+		- Example: PLACE 1,1,EAST
+	- MOVE
+	- LEFT
+	- RIGHT
+	- REPORT
 ## Process
  - Work through each robot command:
 	 - Work through each requirement of the command:
