@@ -12,23 +12,23 @@ public static class CommandParser
         {
             switch (commandAsString)
             {
-                case not null when commandAsString.StartsWith("PLACE", StringComparison.OrdinalIgnoreCase):
+                case not null when commandAsString.StartsWith(CommandName.Place, StringComparison.OrdinalIgnoreCase):
                     var placeCommand = PlaceCommand.Parse(commandAsString);
                     commandQueue.Enqueue(placeCommand);
                     break;
-                case not null when commandAsString.StartsWith("MOVE", StringComparison.OrdinalIgnoreCase):
+                case not null when commandAsString.Equals(CommandName.Move, StringComparison.OrdinalIgnoreCase):
                     var moveCommand = new MoveCommand();
                     commandQueue.Enqueue(moveCommand);
                     break;
-                case not null when commandAsString.StartsWith("LEFT", StringComparison.OrdinalIgnoreCase):
+                case not null when commandAsString.Equals(CommandName.Left, StringComparison.OrdinalIgnoreCase):
                     var rotateLeftCommand = new RotateCommand(RotationDirection.Left);
                     commandQueue.Enqueue(rotateLeftCommand);
                     break;
-                case not null when commandAsString.StartsWith("RIGHT", StringComparison.OrdinalIgnoreCase):
+                case not null when commandAsString.Equals(CommandName.Right, StringComparison.OrdinalIgnoreCase):
                     var rotateRightCommand = new RotateCommand(RotationDirection.Right);
                     commandQueue.Enqueue(rotateRightCommand);
                     break;
-                case not null when commandAsString.StartsWith("REPORT", StringComparison.OrdinalIgnoreCase):
+                case not null when commandAsString.Equals(CommandName.Report, StringComparison.OrdinalIgnoreCase):
                     var reportCommand = new ReportCommand();
                     commandQueue.Enqueue(reportCommand);
                     break;
