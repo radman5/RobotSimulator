@@ -10,8 +10,6 @@ public static class CommandParser
 
         foreach (var commandAsString in commandsAsStrings)
         {
-            Thread.Sleep(100);
-            Console.WriteLine($"Parsing command: {commandAsString}");
             switch (commandAsString)
             {
                 case not null when commandAsString.StartsWith("PLACE", StringComparison.OrdinalIgnoreCase):
