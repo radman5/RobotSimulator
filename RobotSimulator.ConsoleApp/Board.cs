@@ -1,6 +1,6 @@
 using System.Numerics;
 
-namespace RobotSimulator.App;
+namespace RobotSimulator.ConsoleApp;
 
 public record Board(int Height = 5, int Width = 5)
 {

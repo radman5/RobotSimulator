@@ -24,7 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\RobotSimulator.App\RobotSimulator.App.csproj" />
+      <ProjectReference Include="..\RobotSimulator.ConsoleApp\RobotSimulator.ConsoleApp.csproj" />
     </ItemGroup>
 
 </Project>

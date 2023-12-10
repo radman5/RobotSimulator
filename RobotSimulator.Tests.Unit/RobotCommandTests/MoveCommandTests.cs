@@ -1,8 +1,8 @@
 using System.Numerics;
 using FluentAssertions;
-using RobotSimulator.App;
-using RobotSimulator.App.Enums;
-using RobotSimulator.App.RobotCommands;
+using RobotSimulator.ConsoleApp;
+using RobotSimulator.ConsoleApp.Enums;
+using RobotSimulator.ConsoleApp.RobotCommands;
 
 namespace RobotSimulator.Tests.Unit.RobotCommandTests;
 

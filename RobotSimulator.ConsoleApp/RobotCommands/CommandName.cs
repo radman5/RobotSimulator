@@ -1,4 +1,4 @@
-namespace RobotSimulator.App.RobotCommands;
+namespace RobotSimulator.ConsoleApp.RobotCommands;
 
 public static class CommandName
 {

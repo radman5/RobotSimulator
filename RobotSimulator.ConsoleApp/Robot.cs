@@ -1,8 +1,8 @@
 using System.Numerics;
-using RobotSimulator.App.Enums;
-using RobotSimulator.App.RobotCommands;
+using RobotSimulator.ConsoleApp.Enums;
+using RobotSimulator.ConsoleApp.RobotCommands;
 
-namespace RobotSimulator.App;
+namespace RobotSimulator.ConsoleApp;
 
 public class Robot(Board board)
 {

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotSimulator.App", "RobotSimulator.App\RobotSimulator.App.csproj", "{4ECA9B15-B688-4134-83CC-4E11E0298127}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotSimulator.ConsoleApp", "RobotSimulator.ConsoleApp\RobotSimulator.ConsoleApp.csproj", "{4ECA9B15-B688-4134-83CC-4E11E0298127}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotSimulator.Tests.Unit", "RobotSimulator.Tests.Unit\RobotSimulator.Tests.Unit.csproj", "{8897F559-E543-4EF9-87F4-22C9272F866B}"
 EndProject

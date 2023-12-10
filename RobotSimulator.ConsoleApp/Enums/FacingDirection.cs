@@ -1,4 +1,4 @@
-namespace RobotSimulator.App.Enums;
+namespace RobotSimulator.ConsoleApp.Enums;
 
 public enum FacingDirection
 {

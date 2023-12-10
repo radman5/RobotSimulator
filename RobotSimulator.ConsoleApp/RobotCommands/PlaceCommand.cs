@@ -1,7 +1,7 @@
 using System.Numerics;
-using RobotSimulator.App.Enums;
+using RobotSimulator.ConsoleApp.Enums;
 
-namespace RobotSimulator.App.RobotCommands;
+namespace RobotSimulator.ConsoleApp.RobotCommands;
 
 public record PlaceCommand (Vector2 Position, FacingDirection FacingDirection) : IRobotCommand
 {

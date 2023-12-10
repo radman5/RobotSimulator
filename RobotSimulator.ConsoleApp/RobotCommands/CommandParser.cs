@@ -1,6 +1,6 @@
-using RobotSimulator.App.Enums;
+using RobotSimulator.ConsoleApp.Enums;
 
-namespace RobotSimulator.App.RobotCommands;
+namespace RobotSimulator.ConsoleApp.RobotCommands;
 
 public static class CommandParser
 {

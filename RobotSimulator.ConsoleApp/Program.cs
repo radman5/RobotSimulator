@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using RobotSimulator.App;
-using RobotSimulator.App.RobotCommands;
+using RobotSimulator.ConsoleApp;
+using RobotSimulator.ConsoleApp.RobotCommands;
 
 Console.WriteLine("Robot booting up...");
 
